@@ -11,7 +11,14 @@ Language: [English](README_EN.md)
 
 <img src="/preview/icon/logo-v1.gif" alt="图-1：logo" width="460px"></img>
 
->RxFFmpeg 是基于 ( FFmpeg 4.0 + X264 + mp3lame + fdk-aac ) 编译的适用于 Android 平台的音视频编辑、视频剪辑的快速处理框架，包含以下功能（视频拼接，转码，压缩，裁剪，片头片尾，分离音视频，变速，添加静态贴纸和gif动态贴纸，添加字幕，添加滤镜，添加背景音乐，加速减速视频，倒放音视频，音频裁剪，**[魔音变声](https://github.com/microshow/AiSound)**，混音，图片合成视频，视频解码图片等主流特色功能…… 
+>RxFFmpeg 是基于 ( FFmpeg 4.0 + X264 + mp3lame + fdk-aac ) 编译的适用于 Android 平台的音视频编辑、视频剪辑的快速处理框架，包含以下功能（视频拼接，转码，压缩，裁剪，片头片尾，分离音视频，变速，添加静态贴纸和gif动态贴纸，添加字幕，添加滤镜，添加背景音乐，加速减速视频，倒放音视频，音频裁剪，**[##百变魔音##](https://github.com/microshow/AiSound)**，混音，图片合成视频，视频解码图片等主流特色功能…… 
+
+# 【官方App】下载体验
+
+| 扫码 or [点击下载](https://github.com/microshow/RxFFmpeg/raw/master/preview/app-release.apk)  |
+| :--------:   |
+| <img src="/preview/icon/apk-qr.png" alt="图-1：扫码下载体验" width="260px" />       |
+
 
 # TODO
 
@@ -99,7 +106,7 @@ allprojects {
 ```groovy
 
 dependencies {
-    implementation 'com.github.microshow:RxFFmpeg:2.1.0'
+    implementation 'com.github.microshow:RxFFmpeg:2.2.0'
 }
 
 ```
@@ -189,6 +196,33 @@ RxFFmpegInvoke.getInstance().exit();
 
 ```
 
+* 构建命令，使用RxFFmpegCommandList构建，可以有效避免路径带有空格等问题
+
+```java
+
+public static String[] getBoxblur() {
+        RxFFmpegCommandList cmdlist = new RxFFmpegCommandList();
+        cmdlist.append("-i");
+        cmdlist.append("/storage/emulated/0/1/input.mp4");
+        cmdlist.append("-vf");
+        cmdlist.append("boxblur=5:1");
+        cmdlist.append("-preset");
+        cmdlist.append("superfast");
+        cmdlist.append("/storage/emulated/0/1/result.mp4");
+        return cmdlist.build();
+    }
+
+```
+
+* 获取媒体文件信息
+
+```java
+
+RxFFmpegInvoke.getInstance().getMediaInfo(String filePath);
+
+```
+
+
 # 代码混淆
 
 ```text
@@ -196,11 +230,20 @@ RxFFmpegInvoke.getInstance().exit();
 -keep class io.microshow.rxffmpeg.**{*;}
 ```
 
+# 优质项目
+
+### * [GSYVideoPlayer (Android端的视频播放器神器)](https://github.com/CarGuo/GSYVideoPlayer)
+
+### * [AiSound百变魔音 (一个神奇的魔法声音)](https://github.com/microshow/AiSound)
+
+### * [RetrofitGO (轻量级的网络请求库-支持缓存配置)](https://github.com/microshow/RetrofitGO)
+
+
 # 常用命令
 
-* [常用命令汇总](preview/docs/cmd.md)
-* [FFmpeg文档汇总](https://ffmpeg.org/documentation.html)
-* [FFmpeg Filters文档](https://ffmpeg.org/ffmpeg-filters.html)
+### * [常用命令汇总](preview/docs/cmd.md)
+### * [FFmpeg文档汇总](https://ffmpeg.org/documentation.html)
+### * [FFmpeg Filters文档](https://ffmpeg.org/ffmpeg-filters.html)
 
 # ScreenShot
 
@@ -212,22 +255,13 @@ RxFFmpegInvoke.getInstance().exit();
 
 >总结：可以看出arm64-v8a架构的运行效率远大于armeabi-v7a，强烈建议在你的App添加arm64-v8a架构的so,同时也是响应Google的号召。
 
-# 下载体验
-
-| 扫码 or [点击下载](https://github.com/microshow/RxFFmpeg/raw/master/preview/app-debug.apk)  | 
-| :--------:   |
-| <img src="/preview/icon/apk-qr.png" alt="图-1：扫码下载体验" width="260px" />       | 
-
 # 谁在用？
 
 >按登记顺序排序，更多接入APP，欢迎在https://github.com/microshow/RxFFmpeg/issues/37 登记（供开源用户参考）
 
 [![](https://pp.myapp.com/ma_icon/0/icon_42333639_1555789191/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.hndnews.main)
 [![](https://pp.myapp.com/ma_icon/0/icon_53292925_1558869088/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.jianyi.watermarkdog)
-<img src="https://www.hndnews.com/static/images/logo.png" height="96px" />
 [![](https://pp.myapp.com/ma_icon/0/icon_52859659_1558810527/96)](https://a.app.qq.com/o/simple.jsp?pkgname=com.jmhy.tool)
-<img src="https://www.lgstatic.com/thumbnail_300x300/i/image2/M00/16/EC/CgoB5ln4FriAVfL6AAAU0vZMT60031.jpg" height="96px" />
-<img src="https://www.kid17.com/static/kid17-web/kid17_logo01.svg" height="96px" />
 [![](https://pp.myapp.com/ma_icon/0/icon_52610077_1556520138/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.kmb2b.KmMall)
 [![](https://pp.myapp.com/ma_icon/0/icon_42274023_1557972414/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.yiqizhangda.parent)
 [![](https://pp.myapp.com/ma_icon/0/icon_53871621_1563941814/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.soubo.zimujun)
@@ -235,6 +269,11 @@ RxFFmpegInvoke.getInstance().exit();
 [![](https://pp.myapp.com/ma_icon/0/icon_53260423_1565165298/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.aiso.tea)
 [![](http://www.aniic.com/public/l/18.4d1e77d4.png)](http://www.aniic.com/share/download?tdsourcetag=s_pcqq_aiomsg)
 [![](https://pp.myapp.com/ma_icon/0/icon_42373340_1567047517/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.jycj.juyuanmeihui)
+[![](https://pp.myapp.com/ma_icon/0/icon_52743084_1555772496/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.peace.calligraphy)
+[![](https://pp.myapp.com/ma_icon/0/icon_12205109_1570448862/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.peace.guitarmusic)
+[![](https://pp.myapp.com/ma_icon/0/icon_52873563_1570726608/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.queen.oa.xt)
+[![](https://pp.myapp.com/ma_icon/0/icon_53899619_1572422746/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.shifenkexue.appscience)
+[![](https://pp.myapp.com/ma_icon/0/icon_53923023_1570761579/96)](https://sj.qq.com/myapp/detail.htm?apkName=com.sixsix.call)
 
 
 
@@ -246,10 +285,19 @@ QQ Email: 986386695@qq.com
 | :--------:   |
 | <img src="/preview/icon/qqGroup.jpg" alt="图-1：qqGroup" width="260px" />  | 
 
+# 感谢
+
+撸码不易，如果觉得帮您节省了大量的开发时间，对您有所帮助，欢迎您的赞赏！
+
+| 微信赞赏  |
+| :--------:   |
+| <img src="/preview/icon/weixinPay.png" alt="图-1：weixin" width="260px" />  |
+
+
 # License
 
 ```text
-Copyright 2019 Super
+Copyright 2020 Super
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
